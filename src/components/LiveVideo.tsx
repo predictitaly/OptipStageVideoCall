@@ -44,12 +44,16 @@ export const LiveVideo = () => {
     activeConnection,
   );
 
+  localCameraTrack?.setEncoderConfiguration("1080p_2")
+  
   usePublish([localMicrophoneTrack, localCameraTrack]);
 
   //remote users
   const remoteUsers = useRemoteUsers();
   const { audioTracks } = useRemoteAudioTracks(remoteUsers);
 
+
+  
   // play the remote user audio tracks
   audioTracks.forEach((track) => track.play());
 
@@ -60,7 +64,7 @@ export const LiveVideo = () => {
         { 
           // Initialize each remote stream using RemoteUser component
           remoteUsers.map((user) => (
-            <div key={user.uid} className="remote-video-container">
+            <div key={user.uid} className="remote-video-container ">
               <RemoteUser user={user} /> 
             </div>
           ))
